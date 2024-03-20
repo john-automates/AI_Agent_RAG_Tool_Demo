@@ -50,8 +50,7 @@ This project uses PGVector for vector storage. Follow these steps to set up your
 3. Run the following Python code to load and process the documents:
 
 ```python
-# Code to setup vector database and ingest documents
-# Make sure to replace the code snippet here with the one provided
+python document_ingest_Recursive.py
 ```
 
 ## 5. Environment Variables Setup
