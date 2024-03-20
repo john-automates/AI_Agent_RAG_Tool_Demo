@@ -1,94 +1,84 @@
-# Advanced Document Retrieval and Question Answering System
+# AI Agent RAG Tool Demo README
 
-This project integrates advanced Natural Language Processing (NLP) and database management techniques to provide an innovative document retrieval and question-answering system. Utilizing the powerful capabilities of OpenAI's language models and PostgreSQL with pgvector for vector storage, this system is designed to enhance the way users interact with and retrieve information from a vast collection of documents.
+Welcome to the AI Agent RAG Tool Demo! This document will guide you through the process of setting up and running this project. We highly recommend using the Windows Subsystem for Linux (WSL) or a Unix-based system to ensure compatibility and smooth operation.
 
-## Features
+## Prerequisites
 
-- **Multi-Perspective Questioning**: Generates multiple versions of a user query to overcome the limitations of distance-based similarity search in vector databases.
-- **Rich Document Retrieval**: Utilizes PostgreSQL with pgvector for efficient storage and retrieval of document embeddings.
-- **Comprehensive Answer Generation**: Leverages OpenAI's language models to provide detailed answers based on the context of retrieved documents.
-- **Flexible Document Loading and Processing**: Supports loading documents from directories and splitting text into manageable chunks for processing.
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.6+
+Before you begin, ensure you have the following installed on your system:
+- Git
+- Python (version 3.8 or later)
 - PostgreSQL
-- pgvector extension for PostgreSQL
-- OpenAI API key for accessing language models
 
-### Installation
+If you're using Windows, we recommend setting up WSL for a better development experience. [Follow the official guide to install WSL](https://docs.microsoft.com/en-us/windows/wsl/install).
 
-1. **Clone the repository**:
+## 1. Clone the Repository
+
+First, clone the repository and change into the new directory:
 
 ```bash
-git clone "https://github.com/john-automates/AI_Agent_RAG_Tool_Demo.git"
+git clone https://github.com/john-automates/AI_Agent_RAG_Tool_Demo.git
 cd AI_Agent_RAG_Tool_Demo
 ```
 
-2. **Install required Python packages**:
+## 2. Setup Python Virtual Environment
+
+Setting up a virtual environment is crucial for managing the dependencies. Follow these steps:
+
+```bash
+# Create a virtual environment named 'venv'
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows (WSL) or Unix/MacOS
+source venv/bin/activate
+```
+
+## 3. Install Dependencies
+
+With your virtual environment activated, install the project dependencies using:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Setup PostgreSQL and pgvector**:
+## 4. Setup Vector Database and Ingest Handbook
 
-Ensure that PostgreSQL is installed and running. Install the pgvector extension following the instructions from the [official pgvector documentation](https://github.com/pgvector/pgvector).
+This project uses PGVector for vector storage. Follow these steps to set up your vector database and ingest the Cybersecurity Handbook:
 
-4. **Environment Variables**:
-
-Create a `.env` file in the project root directory and populate it with the necessary environment variables:
-
-```
-POSTGRES_PASSWORD=<your-postgres-password>
-POSTGRES_IP=<your-postgres-ip>
-POSTGRES_PORT=<your-postgres-port>
-OPENAI_API_KEY=<your-openai-api-key>
-```
-
-5. **Load Environment Variables**:
-
-The project uses `python-dotenv` to manage environment variables. Ensure all variables are loaded correctly by reviewing the `.env` file.
-
-### Usage
-
-1. **Prepare Your Document Collection**:
-
-Place your documents in a structured directory. This project assumes each document is a text file.
-
-2. **Document Loading and Embedding**:
-
-Run the script to load documents, split them into chunks, and store their embeddings in the PostgreSQL database with pgvector.
-
-```bash
-python document_ingest_Recursive.py
-```
-
-3. **Question Answering**:
-
-Use the provided functions to input a question and receive detailed answers based on the retrieved documents.
+1. Ensure PostgreSQL is installed and running.
+2. Install the pgvector extension by following the instructions from the [official pgvector documentation](https://github.com/pgvector/pgvector).
+3. Run the following Python code to load and process the documents:
 
 ```python
-question = "Your question here"
-result = generate_answer(question, ...)
-print(result)
+# Code to setup vector database and ingest documents
+# Make sure to replace the code snippet here with the one provided
 ```
 
-## Documentation
+## 5. Environment Variables Setup
 
-- **get_unique_union(documents)**: Merges lists of documents, ensuring uniqueness.
-- **format_docs(docs)**: Formats the retrieved documents, including metadata parsing.
-- **generate_answer(question, ...)**: Orchestrates the retrieval and answering process.
-- **main()**: Entry point for running the document processing and retrieval script.
+Make sure to set up your `.env` file with all the necessary API keys and database credentials. Rename `env-templatet.env` to `.env` and fill in the values:
 
-For more detailed information on function parameters and returns, refer to the inline comments in the codebase.
+```plaintext
+VIRUS_TOTAL_API=
+OTX_API=
+SHODAN_API=
+OPENAI_API_KEY=
+URL_SCAN_API_KEY=
+DB_TYPE=postgresql
+DB_USER=
+DB_PASSWORD=
+DB_HOST=
+DB_PORT=
+```
 
-## Contributing
+## 6. Run the Agent
 
-Contributions to enhance the functionality and performance of this project are welcome. Please follow the standard GitHub pull request process to submit your changes.
+Finally, to run the agent, execute:
 
-## License
+```bash
+python agent.py
+```
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Support
+
+For any additional help or clarification on setup and execution, please refer to the documentation or submit an issue on the GitHub repository.
