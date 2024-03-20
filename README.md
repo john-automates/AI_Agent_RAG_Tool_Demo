@@ -24,7 +24,7 @@ This project integrates advanced Natural Language Processing (NLP) and database 
 
 ```bash
 git clone "https://github.com/john-automates/AI_Agent_RAG_Tool_Demo.git"
-cd <project-directory>
+cd AI_Agent_RAG_Tool_Demo
 ```
 
 2. **Install required Python packages**:
