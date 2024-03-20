@@ -1,4 +1,4 @@
-# AI Agent RAG Tool Demo README
+# AI Agent RAG Tool Demo
 
 Welcome to the AI Agent RAG Tool Demo! This document will guide you through the process of setting up and running this project. We highly recommend using the Windows Subsystem for Linux (WSL) or a Unix-based system to ensure compatibility and smooth operation.
 
