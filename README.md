@@ -63,7 +63,7 @@ Place your documents in a structured directory. This project assumes each docume
 Run the script to load documents, split them into chunks, and store their embeddings in the PostgreSQL database with pgvector.
 
 ```bash
-python <script-name>
+python document_ingest_Recursive.py
 ```
 
 3. **Question Answering**:
