@@ -1,0 +1,42 @@
+Appendix B: Security Plan Starter Kit
+
+85
+
+Appendix C:
+Image Citations
+Page 17: CNP Collection, “Security Protection Anti-Virus Software cms”, 2014, digital image, Alamy
+Stock Photo, https://www.alamy.com/security-protection-anti-virus-software-cms-image67114038.
+html?irclickid=2oWTxrXnOxyIRKXzgq3HowdNUkDzCPSFpyViRI0&utm_source=77643&utm_campaign=Shop%20Royalty%20
+Free%20at%20Alamy&utm_medium=impact&irgwc=1.
+Page 24: Cottonbro, "Person Holding Black and Silver Key", 2020, digital image, Pexels, https://www.pexels.com/photo/
+person-holding-black-and-silver-key-5474292/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels.
+Page 26: Blogtrepreneur, "Malware Infection", 2016, digital image, Flickr, https://www.flickr.com/photos/143601516@N03/.
+Page 29: "Microsoft Loading Screen," digital image, Kompass, September 23, 2019, https://asset.kompas.com/crops/
+kYVdzylbrYB5lIpuKDDwJLNFMV4=/164x49:679x393/750x500/data/photo/2018/07/02/4208974652.png.
+Page 30: Mateuz Dach, "Turned-on iPhone and Displaying Icons," 2017, digital image, Pexels, https://www.pexels.com/photo/
+turned-on-iphone-and-displaying-icons-365194/.
+Page 33: Crete-Nishihata, "Process For a Phishing Email Sent in 2016," digital image, University of Toronto, January 30, 2017, https://
+citizenlab.ca/2018/01/spying-on-a-budget-inside-a-phishing-operation-with-targets-in-the-tibetan-community/.
+Page 38: Andrew Keymaster, "People Gathering on Street During Daytime Photo," 2020, digital image, Unsplash, https://unsplash.
+com/photos/JXQ2bizu7kc.
+Page 39: Surveillance Self-Defense, "No Encryption in Transit," digital image, Electronic Frontier Foundation, January 17, 2019.
+https://ssd.eff.org/en/module/what-should-i-know-about-encryption.
+Page 40: Surveillance Self-Defense, "4.Transport-layer-alternate," digital image, Electronic Frontier Foundation, January 17, 2019,
+https://ssd.Surveillance Self-Defense.org/files/2018/11/26/4.transport-layer-alternate.png. ; Surveillance Self-Defense, "6. Endto-end Alternate", digital image, Electronic Frontier Foundation, January 17, 2019, https://ssd.Surveillance Self-Defense.org/
+files/2018/11/26/6.end-to-end-alternate.png.
+Page 42: Surveillance Self-Defense, "9._endtoendencryptionmetadata," 2019, digital image, Electronic Frontier Foundation, https://
+ssd.eff.org/en/module/what-should-i-know-about-encryption.
+Page 50: Brett Sayles, "Server Racks on Data Center," 2020, digital image, Pexels, https://www.pexels.com/photo/
+server-racks-on-data-center-4508751/.
+Page 55: PhotoMIX Company, 2016, "White 2 Cctv Cameras Mounted on Black Post Under Clear Blue Sky," digital image, Pexels,
+https://www.pexels.com/photo/white-2-cctv-camera-mounted-on-black-post-under-clear-blue-sky-96612/.
+Page 60: Stefan Coders, "laptop-screen-vpn-cyber-security," 2020, digital image, Unsplash, https://pixabay.com/photos/
+laptop-screen-vpn-cyber-security-5534556/.
+Page 62: Surveillance Self-Defense, "Using the Tor Browser," digital image, Electronic Frontier Foundation, April 25, 2020. https://
+ssd.eff.org/files/2020/04/25/circumvention-tor_0.png
+Page 64: Nathan Dumlao, "White Samsung Android Smartphone on Brown Wooden Table," 2020, digital image, Unsplash, https://
+unsplash.com/photos/kLmt1mpGJVg.
+Page 69: Matt Artz, "Two Broken 6-Pane On White Painted Wall Photo," digital image, Unsplash, October 1, 2017, https://unsplash.
+com/photos/vT684iB7Ejg.
+
+

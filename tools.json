@@ -1,0 +1,50 @@
+{
+    "tools": [
+        {
+            "type": "function",
+            "function": {
+                "name": "rag_ask",
+                "description": "Used to query the Cyber Security Handbook, the user will provide a question and the system will return the most relevant section of the handbook with a explination.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "question": {
+                            "type": "string",
+                            "description": "The question posed by the user."
+                        }
+                    },
+                    "required": ["question"]
+                },
+                "returns": {
+                    "description": "The result of the query as processed by the SimpleQuerySystem.",
+                    "type": "string"
+                }
+            }
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "generate_ioc_report",
+                "description": "Generates a comprehensive report for a given Indicator of Compromise (IOC) by querying various security APIs such as VirusTotal, OTX, and Shodan. The report includes information relevant to the IOC type and value provided.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "ioc_type": {
+                            "type": "string",
+                            "description": "The type of the Indicator of Compromise, such as 'ip' or 'domain'."
+                        },
+                        "ioc_value": {
+                            "type": "string",
+                            "description": "The value of the IOC, corresponding to the specified type."
+                        }
+                    },
+                    "required": ["ioc_type", "ioc_value"]
+                },
+                "returns": {
+                    "description": "A detailed report including information from VirusTotal, OTX, and Shodan, based on the IOC type and value.",
+                    "type": "string"
+                }
+            }
+        }
+    ]
+}

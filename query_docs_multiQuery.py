@@ -1,30 +1,40 @@
 from langchain.vectorstores.pgvector import PGVector
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain import hub
-from langchain_core.runnables import RunnablePassthrough
+from langchain_core.runnables import RunnablePassthrough, RunnableParallel
 from langchain_core.output_parsers import StrOutputParser
 import os
 from langchain.prompts import ChatPromptTemplate
 from langchain.load import dumps, loads
 from operator import itemgetter
-from langchain_core.runnables import RunnableParallel
 import re
 from dotenv import load_dotenv
+import json
 
 # Load the .env file
 load_dotenv()
 
+class SimpleQuerySystem:
+    def __init__(self, collection_name):
+        self.collection_name = collection_name
+        db_type = os.getenv("DB_TYPE")
+        db_user = os.getenv("DB_USER")
+        db_password = os.getenv("DB_PASSWORD")
+        db_host = os.getenv("DB_HOST")
+        db_port = os.getenv("DB_PORT")
 
-CONNECTION_STRING = "postgresql://postgres:<password>@<ip>:<port>"
+        self.connection_string = f"{db_type}://{db_user}:{db_password}@{db_host}:{db_port}"
+        self.setup()
 
-
-multi_query_template = """You are an AI language model assistant. Your task is to generate five 
+    def setup(self):
+        # Set up templates and embeddings
+        self.multi_query_template = """You are an AI language model assistant. Your task is to generate five 
 different versions of the given user question to retrieve relevant documents from a vector 
 database. By generating multiple perspectives on the user question, your goal is to help
 the user overcome some of the limitations of the distance-based similarity search. 
 Provide these alternative questions separated by newlines. Original question: {question}"""
 
-LLM_prompt = '''You are recognized as an expert in addressing questions on specialized topics. I am about to ask you a question that requires a detailed and informed response. Please adhere to the following guidelines in your reply:
+        self.LLM_prompt = '''You are recognized as an expert in addressing questions on specialized topics. I am about to ask you a question that requires a detailed and informed response. Please adhere to the following guidelines in your reply:
 
 Comprehensive Answers: Your response should thoroughly address the question, incorporating relevant details and interpretations based on the context provided.
 
@@ -38,109 +48,81 @@ Provided Context: {context}
 
 Your Question: {question}'''
 
+        self.prompt_perspectives = ChatPromptTemplate.from_template(self.multi_query_template)
+        self.generate_queries = (
+            self.prompt_perspectives
+            | ChatOpenAI(temperature=0)
+            | StrOutputParser()
+            | (lambda x: x.split("\n"))
+        )
 
-def get_unique_union(documents: list[list]):
+        self.embeddings = OpenAIEmbeddings()
+        self.store = PGVector(
+            collection_name=self.collection_name,
+            connection_string=self.connection_string,
+            embedding_function=self.embeddings,
+        )
+
+    @staticmethod
+    def get_unique_union(documents):
+        # Function to get the unique union of documents
+        flattened_docs = [dumps(doc) for sublist in documents for doc in sublist]
+        unique_docs = list(set(flattened_docs))
+        return [loads(doc) for doc in unique_docs]
+
+    @staticmethod
+    def format_docs(docs):
+        # Format documents with page_content and include metadata if needed
+        formatted_docs = []
+        for doc in docs:
+            formatted_doc = f"{doc.page_content}\n\nSource: {doc.metadata['source']}"
+            formatted_docs.append(formatted_doc)
+        return "\n\n".join(formatted_docs)
+
+
+
+
+    def generate_answer(self, question):
+        retriever = self.store.as_retriever(search_kwargs={"k": 3})
+        retrieval_chain = self.generate_queries | retriever.map() | self.get_unique_union
+        prompt = ChatPromptTemplate.from_template(self.LLM_prompt)
+        llm = ChatOpenAI(temperature=0, model="gpt-4-0125-preview")
+        rag_chain_from_docs = (
+            RunnablePassthrough.assign(context=(lambda x: self.format_docs(x["context"])))
+            | prompt
+            | llm
+            | StrOutputParser()
+        )
+        final_rag_chain = RunnableParallel(
+            {"context": retrieval_chain, "question": RunnablePassthrough()}
+        ).assign(answer=rag_chain_from_docs)
+        result = final_rag_chain.invoke({"question": question})
+        report = f"Context: {result['context']}\n--------\n"
+        report += f"Question: {result['question']['question']}\n--------\n"
+        report += f"Answer: {result['answer']}\n--------\n"
+
+        return report
+
+# Assuming the SimpleQuerySystem class definition is in the same file or imported properly
+
+def rag_ask(question, collection_name="cyber_security_handbook"):
     """
-    Get the unique union of retrieved documents.
-
-    This function takes a list of lists of documents, flattens it into a single list, and removes any duplicate documents. It uses the json.dumps function to convert each document (which is a dictionary) into a string, because dictionaries cannot be directly compared for equality in Python. It then uses the set data structure to remove duplicates, and finally converts each document back into a dictionary using json.loads.
+    A simple function to query the system with a user's question.
 
     Parameters:
-    documents (list[list]): A list of lists of documents. Each document is a dictionary.
+    question (str): The question posed by the user.
+    collection_name (str): The name of the collection to query against. Defaults to "cyber_security_handbook".
 
     Returns:
-    list: A list of unique documents. Each document is a dictionary.
+    The result of the query as processed by the SimpleQuerySystem.
     """
-    # Flatten list of lists, and convert each Document to string
-    flattened_docs = [dumps(doc) for sublist in documents for doc in sublist]
-    # Get unique documents
-    unique_docs = list(set(flattened_docs))
-    # Return
-    return [loads(doc) for doc in unique_docs]
-
-def format_docs(docs):
-    """
-    Format the documents including their source formatted appropriately based on the path structure.
-    
-    This function assumes that the source follows the <author>/<book>/<chapter> format. If a source does not have at least three parts when split by '/', it is considered an "Unknown source".
-    
-    Parameters:
-    docs (list): A list of documents. Each document is a dictionary that includes the document content and metadata.
-
-    Returns:
-    str: A string that includes the formatted document content and source for each document in the input list. Each document is separated by two newline characters.
-    """
-    formatted_docs = []
-    for doc in docs:
-        source = doc.metadata['source']
-        parts = source.split('/')
-        if len(parts) >= 3:
-            author = parts[-3]
-            book = parts[-2]
-            chapter_with_extension = parts[-1]
-            chapter = chapter_with_extension.split('.')[0]  # Remove the file extension
-            formatted_source = f"Author: {author}\n Book: {book}\n Chapter: {chapter}"
-        else:
-            formatted_source = "Unknown source"
-        
-        # Formatting the document content with the formatted source
-        formatted_doc = f"{doc.page_content}\n\nSource: {formatted_source}"
-        formatted_docs.append(formatted_doc)
-    
-    return "\n\n" + "\n\n".join(formatted_docs)
-
-
-# Multi Query: Different Perspectives
-
-prompt_perspectives = ChatPromptTemplate.from_template(multi_query_template)
-
-generate_queries = (
-    prompt_perspectives 
-    | ChatOpenAI(temperature=0) 
-    | StrOutputParser() 
-    | (lambda x: x.split("\n"))
-)
-
-
-def generate_answer(question, generate_queries, get_unique_union, templates, collection_name):
-    # Create embeddings and store inside the function
-    embeddings = OpenAIEmbeddings()
-
-    store = PGVector(
-        collection_name=collection_name,
-        connection_string=CONNECTION_STRING,
-        embedding_function=embeddings,
-    )
-    # gives back the top 3 documents -> You can change the number of documents to retrieve by changing the value of k
-    retriever = store.as_retriever(search_kwargs={"k": 3})
-    
-    # Retrieve
-    retrieval_chain = generate_queries | retriever.map() | get_unique_union
-
-    # RAG
-    prompt = ChatPromptTemplate.from_template(LLM_prompt)
-    llm = ChatOpenAI(temperature=0, model="gpt-4-0125-preview")
-
-    # Create a chain that generates an answer from the documents
-    rag_chain_from_docs = (
-        RunnablePassthrough.assign(context=(lambda x: format_docs(x["context"])))
-        | prompt
-        | llm
-        | StrOutputParser()
-    )
-
-    # Create a parallel chain that retrieves the documents and generates an answer
-    final_rag_chain = RunnableParallel(
-        {"context": retrieval_chain, "question": RunnablePassthrough()}
-    ).assign(answer=rag_chain_from_docs)
-
-    # Invoke the chain with a question
-    result = final_rag_chain.invoke({"question": question})
-
+    system = SimpleQuerySystem(collection_name)
+    result = system.generate_answer(question)
     return result
 
+# Usage example:
+if __name__ == "__main__":
+    question = "Who is this handbook for?"
+    report = rag_ask(question)
+    print(report)
 
-def main():
-    question = "<question>"
-    result = generate_answer(question, generate_queries, get_unique_union, LLM_prompt, "<collection_name>")
-    print(result)

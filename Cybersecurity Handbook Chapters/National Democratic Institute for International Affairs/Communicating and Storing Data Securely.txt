@@ -1,0 +1,24 @@
+Communicating and Storing Data Securely
+
+QUESTIONS TO CONSIDER:
+•
+
+How will your organization implement end-to-end encrypted messaging for secure communication? What
+obstacles might you encounter during implementation?
+
+•
+
+How will your organization enforce a secure file sharing solution both internally and externally? What obstacles
+might you encounter during implementation?
+
+•
+
+How will your organization implement a secure data storage and backup solution? What obstacles might you
+encounter during implementation?
+
+YOUR NOTES AND IDEAS:
+
+82
+
+CyberSecurity Handbook
+

@@ -1,0 +1,41 @@
+Authors & Acknowledgments
+Lead Author: Evan Summers (NDI)
+Contributing Authors: Sarah Moulton (NDI); Chris Doten (NDI)
+
+In developing this Handbook, we’d like
+to particularly thank our expert external
+reviewers who provided us with valuable
+feedback, edits, and suggestions as we pulled
+together this content, including:
+Fiona Krakenburger, Open Technology Fund; Bill Budington
+and Shirin Mori, Electronic Frontier Foundation; Jocelyn
+Woolbright, Cloudflare; Martin Shelton, Freedom of the Press
+Foundation; Dave Leichtman, Microsoft; Stephen Boyce,
+International Foundation for Electoral Systems; Amy Studdart,
+International Republican Institute; Emma Hollingsworth,
+Global Cyber Alliance; Caroline Sinders, Convocation Design +
+Research; Dhyta Caturani; Sandra Pepera, NDI; Aaron Azelton,
+NDI; and Whitney Pfeifer, NDI.
+We also want to acknowledge all the incredible manuals,
+guides, workbooks, training modules and other materials
+developed and maintained by the Organizational Security
+
+(OrgSec) Community. This Handbook is designed to
+complement those more in-depth materials, combining key
+lessons into a one-stop, easy-to-read resource for civil society
+organizations looking to get started on a cybersecurity plan.
+In addition to taking indirect inspiration from many wonderful
+resources compiled by the community, we have directly copied
+useful language from a handful of existing resources as well
+throughout this Handbook, particularly the Electronic Frontier
+Foundation’s Surveillance Self Defense Guide, Tactical Tech’s
+Holistic Security Manual, and a range of explainers from the
+Center for Democracy and Technology and the Freedom of
+the Press Foundation. You can find specific citations to these
+resources throughout the sections below, and complete links,
+author, and license information within Appendix A.
+We also strongly recommend that anyone reading this
+Handbook make use of the extensive library of digital security
+guides and resources compiled and updated by the Open
+Technology Fund.
+

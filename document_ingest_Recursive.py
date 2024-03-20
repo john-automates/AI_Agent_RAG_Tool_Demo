@@ -3,6 +3,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import TextLoader
 from langchain.vectorstores.pgvector import PGVector
+from langchain_community.document_loaders import PyPDFLoader
 import psycopg2
 import os
 from dotenv import load_dotenv
@@ -11,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Get the absolute path to the directory
-abs_path = os.path.abspath("<file_path>")
+abs_path = os.path.abspath("Cybersecurity Handbook")
 
 loader = DirectoryLoader(abs_path, glob="**/*.txt")
 documents = loader.load()
@@ -31,10 +32,15 @@ embeddings = OpenAIEmbeddings()
 
 
 
-COLLECTION_NAME = "<collection_name>"
+COLLECTION_NAME = "cyber_security_handbook"
 
-# # PostgreSQL connection string (update with your actual password)
-CONNECTION_STRING = "postgresql://postgres:<password>@<ip>:<port>"
+db_type = os.getenv("DB_TYPE")
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
+db_host = os.getenv("DB_HOST")
+db_port = os.getenv("DB_PORT")
+
+CONNECTION_STRING = f"{db_type}://{db_user}:{db_password}@{db_host}:{db_port}"
 
 
 # create the store
@@ -47,7 +53,7 @@ db = PGVector.from_documents(
 )
 
 
-query = "<test query>"
+query = "Who is this book for?"
 docs_with_score = db.similarity_search_with_score(query)
 for doc, score in docs_with_score:
     print("-" * 80)

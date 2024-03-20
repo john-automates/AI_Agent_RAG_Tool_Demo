@@ -1,0 +1,70 @@
+Visual Legend
+Throughout the Handbook, you will find a few different recurring, highlighted elements in addition
+to the main text. Here is a short “legend” to help you understand the core elements:
+
+4
+
+Case Study
+
+Extra Tips
+
+Real World
+
+Indicates case studies that highlight
+the real-life impact of a certain
+topic on civil society organizations
+globally or in a specific country.
+
+Highlights some extra tips and
+information to pay attention to as
+you read the Handbook.
+
+Calls out common examples of
+cybersecurity tactics tools used in
+the “real world”, both for good and
+for bad.
+
+Advanced
+
+Security Plan Building Blocks
+
+Indicates an advanced topic information that is important for
+your organization to consider, but
+that might be a bit more technical or
+complicated.
+
+Indicates the “Security Plan Building
+Blocks”, which are the key takeaways from each section of the
+Handbook.
+
+CyberSecurity Handbook
+
+1
+
+2
+Building a Culture
+of Security
+
+3
+
+A Strong Foundation: Securing
+Accounts and Devices
+
+4
+Communicating and
+Storing Data Securely
+
+Staying Safe on
+the Internet
+
+6
+
+5
+Protecting Physical
+Security
+
+What To Do When
+Things Go Wrong
+
+5
+

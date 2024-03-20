@@ -1,0 +1,20 @@
+A Strong Foundation: Securing Accounts and Devices
+
+QUESTIONS TO CONSIDER:
+•
+
+How will you implement account security measures - like a password manager and 2FA - across the organization?
+What obstacles might you encounter during implementation?
+
+•
+
+How will your organization ensure that devices are kept secure and updated? As part of this, will the organization
+need a plan to address unlicensed software or computers?
+
+•
+
+When is a good time to set up training for all staff on the dangers of phishing, malware, and device security best
+practices?
+
+YOUR NOTES AND IDEAS:
+

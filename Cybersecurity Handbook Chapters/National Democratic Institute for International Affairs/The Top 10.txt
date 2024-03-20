@@ -1,0 +1,60 @@
+The Top 10
+These ten elements are critical to your organization’s security plan. If you are looking for
+somewhere to start, look here first.
+
+6
+
+1
+
+2
+
+Conduct regular security training
+within your organization
+
+Be alert to phishing and have a
+reporting system
+
+3
+
+4
+
+Use encryption for all
+communication - end-to-end,
+when possible
+
+Require strong passwords and
+implement a password manager
+across your organization
+
+5
+
+6
+
+Require two factor
+authentication wherever
+possible
+
+Ensure all staff devices and
+software are kept up to date
+
+7
+
+8
+
+Use secure cloud storage
+
+Use HTTPS and, if appropriate, a
+VPN, for accessing the internet
+
+9
+
+10
+
+Protect your organization’s
+physical assets
+
+Develop an organizational
+incident response plan
+
+CyberSecurity Handbook
+
