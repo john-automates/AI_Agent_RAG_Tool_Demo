@@ -23,7 +23,7 @@ This project integrates advanced Natural Language Processing (NLP) and database 
 1. **Clone the repository**:
 
 ```bash
-git clone <repository-url>
+git clone "https://github.com/john-automates/AI_Agent_RAG_Tool_Demo.git"
 cd <project-directory>
 ```
 
