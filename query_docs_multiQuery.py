@@ -22,8 +22,9 @@ class SimpleQuerySystem:
         db_password = os.getenv("DB_PASSWORD")
         db_host = os.getenv("DB_HOST")
         db_port = os.getenv("DB_PORT")
+        db_name = os.getenv("DB_NAME")
 
-        self.connection_string = f"{db_type}://{db_user}:{db_password}@{db_host}:{db_port}"
+        self.connection_string = f"{db_type}://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
         self.setup()
 
     def setup(self):
