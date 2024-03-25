@@ -11,6 +11,8 @@ Before you begin, ensure you have the following installed on your system:
 
 If you're using Windows, we recommend setting up WSL for a better development experience. [Follow the official guide to install WSL](https://docs.microsoft.com/en-us/windows/wsl/install).
 
+There is also a Docker version.
+
 ## 1. Clone the Repository
 
 First, clone the repository and change into the new directory:
@@ -55,7 +57,7 @@ python document_ingest_Recursive.py
 
 ## 5. Environment Variables Setup
 
-Make sure to set up your `.env` file with all the necessary API keys and database credentials. Rename `env-templatet.env` to `.env` and fill in the values:
+Make sure to set up your `.env` file with all the necessary API keys and database credentials. Rename `env-template.env` to `.env` and fill in the values:
 
 ```plaintext
 VIRUS_TOTAL_API=
@@ -77,6 +79,34 @@ Finally, to run the agent, execute:
 ```bash
 python agent.py
 ```
+
+## Docker
+
+You must have Docker Desktop installed to use the Docker version. Note, this is for development purposes right now.
+
+```bash
+git clone https://github.com/john-automates/AI_Agent_RAG_Tool_Demo.git
+cd AI_Agent_RAG_Tool_Demo
+cp env-template.env .env
+```
+
+Edit .env
+
+```bash
+docker compose up -d
+```
+
+In Docker Desktop, find ai_agent_rag_tool_demo, app-1, then click the 3 dots and select "Open in terminal". From there, you can type `./document_ingest_Recursive.py` or `./agent.py`.
+
+If you make script changes you need to rebuild the app image.
+
+```bash
+docker compose down
+docker compose build
+docker compose up -d
+```
+
+The postgres database is stored in postgres-data. If you run `docker compose down` the database is persisted so that you don't have to re-run `./document_ingest_Recursive.py`.
 
 ## Support
 
