@@ -1,7 +1,9 @@
-from langchain.document_loaders import DirectoryLoader
-from langchain.embeddings.openai import OpenAIEmbeddings
+#!/usr/bin/env python
+
+from langchain_community.document_loaders import DirectoryLoader
+from langchain_openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.document_loaders import TextLoader
+from langchain_community.document_loaders import TextLoader
 from langchain.vectorstores.pgvector import PGVector
 from langchain_community.document_loaders import PyPDFLoader
 import psycopg2
@@ -39,8 +41,9 @@ db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
 db_host = os.getenv("DB_HOST")
 db_port = os.getenv("DB_PORT")
+db_name = os.getenv("DB_NAME")
 
-CONNECTION_STRING = f"{db_type}://{db_user}:{db_password}@{db_host}:{db_port}"
+CONNECTION_STRING = f"{db_type}://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 
 
 # create the store
